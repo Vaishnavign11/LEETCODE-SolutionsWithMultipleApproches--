@@ -1,0 +1,32 @@
+# container-with-most-water
+https://leetcode.com/problems/container-with-most-water/
+
+
+Two Pointer Technique:
+TC:O(n)
+
+
+
+
+
+Code only function:
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        i = 0
+        j = len(height) - 1
+        mx = 0
+        while i < j:
+            area = (j - i) * min(height[i], height[j])
+            mx = max(mx, area)
+            print area
+            # Move the pointer pointing to the shorter line
+            if height[i] < height[j]:
+                i += 1
+            else:
+                j -= 1
+        return mx
+ 
