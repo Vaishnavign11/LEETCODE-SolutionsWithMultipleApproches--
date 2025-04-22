@@ -1,0 +1,34 @@
+*TWO SUM PROBLEM
+https://leetcode.com/problems/two-sum/
+
+moderate approch:
+A more efficient approach is to use a hash table (unordered_map in C++).
+We can iterate through the array once, and for each element, check if the target minus the current element exists in the hash table. 
+If it does, we have found a valid pair of numbers. If not, we add the current element to the hash table.
+time complexity O(2N)==O(N)
+space complexity O(N)
+
+ONLY Function code :
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        i=0
+        dict={}
+        # build the hash table
+        while i<len(nums):
+            dict[nums[i]]=i
+            i=i+1  
+        i=0
+        # find the Complement to remove the cause occur of same number 
+        while i<len(nums):
+            c=target-nums[i]
+            if c in dict and dict[c] != i:
+                return [i,dict[c]]
+            i=i+1
+
+        return []
