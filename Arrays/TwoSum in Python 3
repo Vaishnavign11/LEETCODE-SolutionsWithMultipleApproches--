@@ -1,0 +1,36 @@
+Intuition
+The Two Sum problem asks us to find two numbers in an array that sum up to a given target value. We need to return the indices of these two numbers.
+
+Optimal Approch:
+Approach using a hash table (ONE PASS):
+Create an empty hash table to store elements and their indices.
+Iterate through the array from left to right.
+For each element nums[i], calculate the complement by subtracting it from the target: complement = target - nums[i].
+Check if the complement exists in the hash table. If it does, we have found a solution.
+If the complement does not exist in the hash table, add the current element nums[i] to the hash table with its index as the value.
+Repeat steps 3-5 until we find a solution or reach the end of the array.
+If no solution is found, return an empty array or an appropriate indicator.
+This approach has a time complexity of O(n) since hash table lookups take constant time on average. 
+It allows us to solve the Two Sum problem efficiently by making just one pass through the array.
+
+CODE Only Function:
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        i=0
+        numsMP={}
+        while i<len(nums):
+            comp=target-nums[i]
+            if comp in numsMP:
+                return [numsMP[comp],i]
+            numsMP[nums[i]]=i
+            i=i+1
+
+        return []
+        
+        
