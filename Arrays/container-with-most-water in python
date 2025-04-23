@@ -1,0 +1,39 @@
+
+# container-with-most-water
+https://leetcode.com/problems/container-with-most-water/
+
+Intuition
+We can first perform the operations, then rebuild the array by moving non-zero elements to the front, and finally pad with zeroes.
+
+Two Pointer Technique:
+Approach
+you should use the two-pointer approach, which reduces the time complexity to O(n).
+Start with two pointers at the ends.
+Always move the pointer with the smaller height, hoping for a taller line to increase area.
+Keep updating max_area as needed.
+
+Complexity
+Time complexity:
+two-pointer approach, which reduces the time complexity to O(n).
+
+Code only function:
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        i = 0
+        j = len(height) - 1
+        mx = 0
+        while i < j:
+            area = (j - i) * min(height[i], height[j])
+            mx = max(mx, area)
+            print area
+            # Move the pointer pointing to the shorter line
+            if height[i] < height[j]:
+                i += 1
+            else:
+                j -= 1
+        return mx
+ 
