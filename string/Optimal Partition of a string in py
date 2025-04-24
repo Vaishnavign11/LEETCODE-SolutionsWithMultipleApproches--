@@ -1,0 +1,36 @@
+Intuition
+The problem requires us to partition the string into substrings where each substring should have unique characters.
+Therefore, if a character that has already appeared in the current substring appears again, we should create a new substring. 
+We can keep track of the last occurrence of each character using a hash map, and iterate through the string to create substrings that contain only unique characters.
+
+Approach
+We can use a hash map to keep track of the last occurrence of each character. 
+We start with the first character of the string and add it to the dictionary or (hash map).
+Then, we iterate through the rest of the string, and for each character,
+we check if it has already appeared in the current substring (i.e., its last occurrence is after the start index of the current substring). 
+If it has, we create a new substring and start a new count.
+Otherwise, we add the character to the dictionary or hash map and continue iterating. 
+At the end, we return the count plus one (to account for the last substring).
+TC:O(N)
+SC:O(N)
+
+Code Only Function:
+
+class Solution(object):
+    def partitionString(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        i=0
+        c=1
+        dict={}
+        while(i<len(s)):
+            if s[i] in dict:
+                c+=1
+                dict.clear()
+            dict[s[i]]=True
+            i+=1
+        return c
+
+                    
